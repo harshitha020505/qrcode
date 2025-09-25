@@ -1,0 +1,64 @@
+/* ApplicantPage.css */
+
+/* Container styling */
+.applicant-container {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Arial', sans-serif;
+    color: #2c3e50;
+  }
+  
+  /* Headings */
+  .applicant-container h1 {
+    color: #1f3a93;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .applicant-container h2 {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Table styling */
+  .documents-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 75%;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  /* Table header */
+  .documents-table thead tr {
+    background-color: #2980b9;
+    color: white;
+    text-align: left;
+  }
+  
+  .documents-table th, .documents-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Table body */
+  .documents-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .documents-table tbody tr:hover {
+    background-color: #d6eaf8;
+    transition: 0.3s;
+  }
+  
+  /* Responsive table for smaller screens */
+  @media (max-width: 768px) {
+    .documents-table {
+      width: 95%;
+      font-size: 0.9rem;
+    }
+  }
+  
