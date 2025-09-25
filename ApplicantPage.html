@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applicant Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    .applicant-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 8px 16px;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    input {
+      padding: 6px;
+      margin-right: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #f0f0f0;
+    }
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<div class="applicant-container">
+  <h1 id="applicant-name">Applicant: Ramesh</h1>
+  <h2>Secure Document Access</h2>
+
+  <div id="otp-section">
+    <button id="send-otp-btn">Send OTP</button>
+    <div id="otp-input-section" style="display:none; margin-top:10px;">
+      <input type="text" id="otp-input" placeholder="Enter OTP">
+      <button id="verify-otp-btn">Verify OTP</button>
+    </div>
+  </div>
+
+  <div id="documents-section" style="display:none;">
+    <h3>Documents & Actions</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Document Name</th>
+          <th>View</th>
+          <th>Download</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody id="documents-table-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // Applicant data
+  const data = {
+    applicantName: "Ramesh",
+    documents: [
+      { name: "Claim Form", url: "/docs/claim_form.pdf", timestamp: 1710000000 },
+      { name: "Identity Proof (Aadhaar)", url: "/docs/aadhaar.pdf", timestamp: 1710003600 },
+      { name: "Land Records", url: "/docs/land_records.pdf", timestamp: 1710086400 },
+    ],
+  };
+
+  const sendOtpBtn = document.getElementById("send-otp-btn");
+  const otpInputSection = document.getElementById("otp-input-section");
+  const verifyOtpBtn = document.getElementById("verify-otp-btn");
+  const otpInput = document.getElementById("otp-input");
+  const documentsSection = document.getElementById("documents-section");
+  const documentsTableBody = document.getElementById("documents-table-body");
+
+  // Send OTP simulation
+  sendOtpBtn.addEventListener("click", () => {
+    alert("Enter any OTP to proceed."); // no real SMS
+    otpInputSection.style.display = "block";
+  });
+
+  // Verify OTP simulation
+  verifyOtpBtn.addEventListener("click", () => {
+    const otpValue = otpInput.value.trim();
+    if (!otpValue) {
+      alert("Enter OTP!");
+      return;
+    }
+    alert("Applicant verified successfully!");
+    otpInputSection.style.display = "none";
+    documentsSection.style.display = "block";
+    renderDocuments();
+  });
+
+  // Render documents table
+  function renderDocuments() {
+    documentsTableBody.innerHTML = "";
+    data.documents.forEach(doc => {
+      const tr = document.createElement("tr");
+
+      const nameTd = document.createElement("td");
+      nameTd.textContent = doc.name;
+
+      const viewTd = document.createElement("td");
+      const viewLink = document.createElement("a");
+      viewLink.href = doc.url;
+      viewLink.target = "_blank";
+      viewLink.textContent = "View";
+      viewTd.appendChild(viewLink);
+
+      const downloadTd = document.createElement("td");
+      const downloadLink = document.createElement("a");
+      downloadLink.href = doc.url;
+      downloadLink.download = "";
+      downloadLink.textContent = "Download";
+      downloadTd.appendChild(downloadLink);
+
+      const timestampTd = document.createElement("td");
+      const date = new Date(doc.timestamp * 1000);
+      timestampTd.textContent = date.toLocaleString();
+
+      tr.appendChild(nameTd);
+      tr.appendChild(viewTd);
+      tr.appendChild(downloadTd);
+      tr.appendChild(timestampTd);
+
+      documentsTableBody.appendChild(tr);
+    });
+  }
+</script>
+
+</body>
+</html>
